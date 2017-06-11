@@ -25,7 +25,7 @@ public class LoginTests {
     public void AdminUserCanLogin()
     {
         LoginPage.GoTo();
-        LoginPage.LoginAs("admin").withPassword("demyropass").Login();
+        LoginPage.LoginAs(User.getUsername()).withPassword(User.getPassword()).Login();
 
         Assert.assertTrue("Admins menu didn't show up", AdminMenu.IsAt());
     }
