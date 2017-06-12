@@ -1,6 +1,7 @@
 package Tools.TestUsers;
 
-import java.sql.ParameterMetaData;
+import Tools.ConnectDB;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,34 +9,44 @@ import java.sql.Statement;
 /**
  * Created by myron on 11-Jun-17.
  */
-public class Admin
-{
+public class Admin {
 
+    public static String getUsername() {
 
-    public static void main(String[] args)
-    {
-
-        User admin = new User();
-
-        String query = "Select * from users where id = 1";
-
+        ConnectDB connectDB = new ConnectDB();
+        String query = "Select username from users where id = 1";
+        String username = "";
 
         try {
-            Statement statement = admin.getConnection().createStatement();
+            Statement statement = connectDB.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                admin.setUsername(resultSet.getString("username"));
-                admin.setPassword(resultSet.getString("password"));
+                username = resultSet.getString("username");
             }
-            admin.closeConnection();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
+
+            connectDB.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        System.out.println(User.getPassword());
-        System.out.println(User.getUsername());
-
-
+        return username;
     }
 
+    public static String getPassword(){
+        ConnectDB connectDB = new ConnectDB();
+        String query = "Select password from users where id = 1";
+        String password = "";
 
+        try {
+            Statement statement = connectDB.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                password = resultSet.getString("password");
+            }
+
+            connectDB.closeConnection();
+        }catch (SQLException e){
+        e.printStackTrace();
+        }
+        return password;
+    }
 }

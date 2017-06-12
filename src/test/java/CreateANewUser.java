@@ -3,6 +3,7 @@ import Pages.AddUserPage;
 import Pages.LoginPage;
 import Pages.PeoplePage;
 import Tools.Driver;
+import Tools.TestUsers.Admin;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class CreateANewUser {
     public void AdminCanCreateANewUser()
     {
         LoginPage.GoTo();
-        LoginPage.LoginAs("admin").withPassword("demyropass").Login();
+        LoginPage.LoginAs(Admin.getUsername()).withPassword(Admin.getPassword()).Login();
 
         AdminMenu.GoToPage("People");
         PeoplePage.GoToPage("Add user");
