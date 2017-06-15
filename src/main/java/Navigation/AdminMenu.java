@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class AdminMenu
 {
-//        public static boolean IsAt;
 
         public static boolean IsAt()
         {

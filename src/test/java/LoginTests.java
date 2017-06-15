@@ -22,9 +22,9 @@ public class LoginTests {
     }
 
     @Test
-    public void AdminUserCanLogin() {
+    public void AdminUserCanLogin(){
         LoginPage.GoTo();
-        LoginPage.LoginAs(Admin.getUsername()).withPassword(Admin.getPassword()).Login();
+        LoginPage.LoginAs(Admin.getUsername(), Admin.getPassword());
 
         Assert.assertTrue("Admins menu didn't show up", AdminMenu.IsAt());
     }

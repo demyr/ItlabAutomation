@@ -51,20 +51,25 @@ public class AddUserPage
 
         public void Create()
         {
+            // type username
             WebElement editName = new WebDriverWait(Driver.Instance, 10)
                     .until(ExpectedConditions.presenceOfElementLocated(By.id("edit-name")));
             editName.sendKeys(userName);
 
+            // type email
             WebElement editEmail = Driver.Instance.findElement(By.id("edit-mail"));
             editEmail.sendKeys(email);
 
+            // type password
             WebElement editPass = Driver.Instance.findElement(By.id("edit-pass-pass1"));
             editPass.sendKeys(password);
 
+            // type confirm password
             WebElement editConfPass = Driver.Instance.findElement(By.id("edit-pass-pass2"));
             editConfPass.sendKeys(password);
 
-            if (status=="Active")
+            // set status radiobutton
+            if (status == "Active")
             {
                 WebElement statusRadios = Driver.Instance.findElement(By.id("edit-status-1"));
                 statusRadios.click();
@@ -75,6 +80,7 @@ public class AddUserPage
                 statusRadios.click();
             }
 
+            // set role checkbox
             if (role == "User")
             {
                 WebElement roleChBox = Driver.Instance.findElement(By.id("edit-roles-4"));
@@ -93,18 +99,27 @@ public class AddUserPage
 
             }
 
+            // set notification checkbox
             if(notification)
             {
-                WebElement notifyChBox = Driver.Instance.findElement(By.id("edit-notify"));
-                notifyChBox.click();
-
+                WebElement notifyChkBox = Driver.Instance.findElement(By.id("edit-notify"));
+                notifyChkBox.click();
             }
 
+            // set 'edit personal data' checkbox
             WebElement editPersonalData = Driver.Instance.findElement(By.id("edit-personal-data"));
             editPersonalData.click();
 
+            // click create button
             WebElement createBtn = Driver.Instance.findElement(By.id("edit-submit"));
             createBtn.click();
+
+            // wait user creating
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }
 
